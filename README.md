@@ -1,6 +1,6 @@
 # cddb lecture 2 - docker
 
-Ronin van Egdom
+Ronin van Egdom\n
 studNr. 1053927
 
 ## Table of Contents
