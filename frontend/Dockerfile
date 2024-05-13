@@ -1,5 +1,5 @@
 FROM nginx:latest
-LABEL author="Ronin van Egdom studNr.(1053927)"
+LABEL maintainer="Ronin van Egdom studNr.(1053927)"
 LABEL description="This image contains the frontend of the cddb Album application"
 LABEL version="version1.0"
 
