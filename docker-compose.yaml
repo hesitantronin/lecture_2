@@ -1,4 +1,3 @@
-version: 3
 
 services:
   cddb_postgres:
@@ -7,16 +6,16 @@ services:
     ports:
       - "25432:5432"
     environment:
-      - DB: cddb_quintor
-      - POSTGRES_USER: cddb_quintor
-      - POSTGRES_PASSWORD: quintor_pw
+      DB: "cddb_quintor"
+      POSTGRES_USER: "cddb_quintor"
+      POSTGRES_PASSWORD: "quintor_pw"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - cddb_network
-    aliases:
-      - postgres
-  
+      cddb_network:
+        aliases:
+          - postgres
+
   cddb_backend:
     container_name: cddb_backend
     build:
@@ -24,8 +23,7 @@ services:
     ports:
       - "28080:8080"
     depends_on:
-      postgres:
-       condition: service_healthy
+      - cddb_postgres
     networks:
       - cddb_network
 
@@ -35,13 +33,13 @@ services:
       context: frontend
     ports:
       - "20080:80"
+    depends_on:
+      - cddb_backend
     networks:
       - cddb_network
 
 volumes:
-  pgdata
+  pgdata:
 
 networks:
-  cddb_network
-    
-
+  cddb_network:
